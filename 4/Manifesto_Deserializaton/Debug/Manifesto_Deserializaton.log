@@ -1,0 +1,21 @@
+﻿Сборка начата 29.09.2022 18:04:43.
+Уровень детализации журнала: Normal.     1>Проект "C:\2курс, 1 сем\КПО\4\Manifesto_Deserializaton\Manifesto_Deserializaton.vcxproj" в узле 2 (целевые объекты Build).
+     1>InitializeBuildStatus:
+         Создание "Debug\Manifest.4138bf27.tlog\unsuccessfulbuild", так как было задано "AlwaysCreate".
+       _MASM:
+         Assembling Manifesto_Deserializaton.asm...
+         cmd.exe /C "C:\Users\Lenovo\AppData\Local\Temp\tmp0103c6923c224053b02c0360e6bf566b.cmd"
+         ml.exe /c /nologo /Zi /Fo"Debug\Manifesto_Deserializaton.obj" /Fl"Debug\\" /W3 /errorReport:prompt  /TaManifesto_Deserializaton.asm
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX86\x86\link.exe /ERRORREPORT:PROMPT /OUT:"C:\2курс, 1 сем\КПО\4\Lab_4\Debug\Manifesto_Deserializaton.exe" /INCREMENTAL /ILK:"Debug\Manifesto_Deserializaton.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\2курс, 1 сем\КПО\4\Lab_4\Debug\Manifesto_Deserializaton.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\2курс, 1 сем\КПО\4\Lab_4\Debug\Manifesto_Deserializaton.lib" /MACHINE:X86 Debug\Manifesto_Deserializaton.obj
+         Manifesto_Deserializaton.vcxproj -> C:\2курс, 1 сем\КПО\4\Lab_4\Debug\Manifesto_Deserializaton.exe
+       FinalizeBuildStatus:
+         Файл "Debug\Manifest.4138bf27.tlog\unsuccessfulbuild" удаляется.
+         Обращение к "Debug\Manifest.4138bf27.tlog\Manifesto_Deserializaton.lastbuildstate".
+     1>Сборка проекта "C:\2курс, 1 сем\КПО\4\Manifesto_Deserializaton\Manifesto_Deserializaton.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+    Предупреждений: 0
+    Ошибок: 0
+
+Прошло времени 00:00:00.79

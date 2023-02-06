@@ -1,0 +1,60 @@
+--------- Таблица идентификаторов ---------
+Индекс в ТИ:          Идентификатор:          Тип идентификатора:          Тип данных:          Область видимости:          Первое вхождение в ТЛ:          Значение:
+0.                    f1i                     F                            INT                  GLOBAL                      2                               0
+
+1.                    x                       P                            INT                  f1i                         5                               0
+
+2.                    y                       P                            INT                  f1i                         8                               0
+
+3.                    z                       V                            INT                  f1i                         13                              0
+
+4.                    fs                      F                            STR                  GLOBAL                      32                              0''
+
+5.                    a                       P                            STR                  fs                          35                              0''
+
+6.                    b                       P                            STR                  fs                          38                              0''
+
+7.                    c                       V                            STR                  fs                          43                              0''
+
+8.                    subst                   F                            STR                  fs                          48                              0''
+
+9.                    a                       P                            STR                  substr                      51                              0''
+
+10.                   p                       P                            INT                  substr                      54                              0
+
+11.                   n                       P                            INT                  substr                      57                              0
+
+12.                   L_0                     L                            INT                  -                           64                              1
+
+13.                   L_1                     L                            INT                  -                           66                              3
+
+14.                   main                    F                            INT                  GLOBAL                      78                              0
+
+15.                   x                       V                            INT                  main                        84                              0
+
+16.                   y                       V                            INT                  main                        88                              0
+
+17.                   z                       V                            INT                  main                        92                              0
+
+18.                   sa                      V                            STR                  main                        96                              0''
+
+19.                   sb                      V                            STR                  main                        100                             0''
+
+20.                   sc                      V                            STR                  main                        104                             0''
+
+21.                   strle                   F                            INT                  main                        109                             0
+
+22.                   p                       P                            STR                  strlen                      112                             0''
+
+23.                   L_2                     L                            INT                  -                           117                             1
+
+24.                   L_3                     L                            INT                  -                           121                             5
+
+25.                   L_4                     L                            STR                  -                           125                             30'12345        67890            '
+
+26.                   L_5                     L                            STR                  -                           129                             10'1234567890'
+
+27.                   L_6                     L                            STR                  -                           148                             56'контрольный                                       пример'
+
+28.                   L_7                     L                            INT                  -                           162                             0
+

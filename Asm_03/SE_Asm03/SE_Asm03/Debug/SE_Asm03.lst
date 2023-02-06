@@ -1,0 +1,533 @@
+Microsoft (R) Macro Assembler Version 14.32.31332.0	    12/12/22 16:43:22
+SE_Asm03.asm						     Page 1 - 1
+
+
+				.586
+					.model flat, stdcall
+					includelib libucrt.lib
+					includelib kernel32.lib
+					includelib C:/Users/rubas/Desktop/RAA-2022-main/RAAlib/Debug/RAAlib
+
+					EXTERN _printS :PROC
+					EXTERN _printN :PROC
+					EXTERN _pow :PROC
+					EXTERN _compare :PROC
+					EXTERN _pause :PROC
+					ExitProcess PROTO :DWORD
+
+				.stack 4096
+
+ 00000000			.const
+ 00000000 43 3A 2F 55 73		L1 BYTE 'C:/Users/rubas/Desktop/RAA-2022-main/RAAlib/Debug/RAAlib', 0
+	   65 72 73 2F 72
+	   75 62 61 73 2F
+	   44 65 73 6B 74
+	   6F 70 2F 52 41
+	   41 2D 32 30 32
+	   32 2D 6D 61 69
+	   6E 2F 52 41 41
+	   6C 69 62 2F 44
+	   65 62 75 67 2F
+	   52 41 41 6C 69
+	   62 00
+ 00000039 54 68 65 20 66		L2 BYTE 'The first value is more than the second', 0
+	   69 72 73 74 20
+	   76 61 6C 75 65
+	   20 69 73 20 6D
+	   6F 72 65 20 74
+	   68 61 6E 20 74
+	   68 65 20 73 65
+	   63 6F 6E 64 00
+ 00000061 54 68 65 20 73		L3 BYTE 'The second value is more than the first', 0
+	   65 63 6F 6E 64
+	   20 76 61 6C 75
+	   65 20 69 73 20
+	   6D 6F 72 65 20
+	   74 68 61 6E 20
+	   74 68 65 20 66
+	   69 72 73 74 00
+ 00000089 54 68 65 20 66		L4 BYTE 'The first and second value are equal or the second value more', 0
+	   69 72 73 74 20
+	   61 6E 64 20 73
+	   65 63 6F 6E 64
+	   20 76 61 6C 75
+	   65 20 61 72 65
+	   20 65 71 75 61
+	   6C 20 6F 72 20
+	   74 68 65 20 73
+	   65 63 6F 6E 64
+	   20 76 61 6C 75
+	   65 20 6D 6F 72
+	   65 00
+ 000000C7 54 68 65 20 66		L5 BYTE 'The first and second value are not equal', 0
+	   69 72 73 74 20
+	   61 6E 64 20 73
+	   65 63 6F 6E 64
+	   20 76 61 6C 75
+	   65 20 61 72 65
+	   20 6E 6F 74 20
+	   65 71 75 61 6C
+	   00
+ 000000F0 0007				L6 WORD 7
+ 000000F2 0001				L7 WORD 1
+ 000000F4 0002				L8 WORD 2
+ 000000F6 4F 75 74 70 75		L9 BYTE 'Output of values c and a:', 0
+	   74 20 6F 66 20
+	   76 61 6C 75 65
+	   73 20 63 20 61
+	   6E 64 20 61 3A
+	   00
+ 00000110 68 69 00			L10 BYTE 'hi', 0
+ 00000113 48 65 6C 6C 6F		L11 BYTE 'Hello world', 0
+	   20 77 6F 72 6C
+	   64 00
+ 0000011F 4F 75 74 70 75		L12 BYTE 'Output of line str1 and str2:', 0
+	   74 20 6F 66 20
+	   6C 69 6E 65 20
+	   73 74 72 31 20
+	   61 6E 64 20 73
+	   74 72 32 3A 00
+ 0000013D 6C 65 78 69 63		L13 BYTE 'lexicographic string comparison str3 and str4:', 0
+	   6F 67 72 61 70
+	   68 69 63 20 73
+	   74 72 69 6E 67
+	   20 63 6F 6D 70
+	   61 72 69 73 6F
+	   6E 20 73 74 72
+	   33 20 61 6E 64
+	   20 73 74 72 34
+	   3A 00
+ 0000016C 68 65 6C 6C 6F		L14 BYTE 'hello', 0
+	   00
+ 00000172 68 65 6C 6C 6F		L15 BYTE 'hello ', 0
+	   20 00
+ 00000179 61 63 63 65 73		L16 BYTE 'accessing the function ~min~:', 0
+	   73 69 6E 67 20
+	   74 68 65 20 66
+	   75 6E 63 74 69
+	   6F 6E 20 7E 6D
+	   69 6E 7E 3A 00
+ 00000197 61 63 63 65 73		L17 BYTE 'accessing the function ~max~:', 0
+	   73 69 6E 67 20
+	   74 68 65 20 66
+	   75 6E 63 74 69
+	   6F 6E 20 7E 6D
+	   61 78 7E 3A 00
+ 000001B5 61 63 63 65 73		L18 BYTE 'accessing the function ~more~:', 0
+	   73 69 6E 67 20
+	   74 68 65 20 66
+	   75 6E 63 74 69
+	   6F 6E 20 7E 6D
+	   6F 72 65 7E 3A
+	   00
+ 000001D4 012C				L19 WORD 300
+ 000001D6 61 63 63 65 73		L20 BYTE 'accessing the function ~equal~, when a=111(binary):', 0
+	   73 69 6E 67 20
+	   74 68 65 20 66
+	   75 6E 63 74 69
+	   6F 6E 20 7E 65
+	   71 75 61 6C 7E
+	   2C 20 77 68 65
+	   6E 20 61 3D 31
+	   31 31 28 62 69
+	   6E 61 72 79 29
+	   3A 00
+ 0000020A 61 63 63 65 73		L21 BYTE 'accessing the function ~equal~, when a!=111(binary) and <111:', 0
+	   73 69 6E 67 20
+	   74 68 65 20 66
+	   75 6E 63 74 69
+	   6F 6E 20 7E 65
+	   71 75 61 6C 7E
+	   2C 20 77 68 65
+	   6E 20 61 21 3D
+	   31 31 31 28 62
+	   69 6E 61 72 79
+	   29 20 61 6E 64
+	   20 3C 31 31 31
+	   3A 00
+ 00000248 0000				L22 WORD 0
+
+ 00000000			.data
+ 00000000 0000				minres WORD 0
+ 00000002 0000				maxres WORD 0
+ 00000004 00000000			moreres DWORD 0
+ 00000008 00000000			eqorminres DWORD 0
+ 0000000C 00000000			mainstr1 DWORD 0
+ 00000010 00000000			mainstr2 DWORD 0
+ 00000014 00000000			mainstr3 DWORD 0
+ 00000018 00000000			mainstr4 DWORD 0
+ 0000001C 0000				maina WORD 0
+ 0000001E 0000				mainb WORD 0
+ 00000020 0000				mainc WORD 0
+ 00000022 0000				maind WORD 0
+ 00000024 0000				mainres WORD 0
+
+ 00000000			.code
+ 00000000			min PROC mina : WORD, minb : WORD
+ 00000003  66| 8B 45 0C			mov ax, minb
+ 00000007  66| 3B 45 08			cmp ax, mina
+ 0000000B  7C 04			jl p0
+ 0000000D  7F 0F			jg p1
+ 0000000F  74 0D			je p1
+ 00000011			p0:
+ 00000011  66| FF 75 0C			push minb
+ 00000015  66| 8F 05			pop minres
+	   00000000 R
+ 0000001C  EB 0B			jmp ife0
+ 0000001E			p1:
+ 0000001E  66| FF 75 08			push mina
+ 00000022  66| 8F 05			pop minres
+	   00000000 R
+ 00000029			ife0:
+ 00000029  66| FF 35			push minres
+	   00000000 R
+ 00000030  58				pop eax
+					ret
+ 00000035			min ENDP
+
+ 00000035			max PROC maxa : WORD, maxb : WORD
+ 00000038  66| 8B 45 0C			mov ax, maxb
+ 0000003C  66| 3B 45 08			cmp ax, maxa
+ 00000040  7F 04			jg p2
+ 00000042  7C 0F			jl p3
+ 00000044  74 0D			je p3
+ 00000046			p2:
+ 00000046  66| FF 75 0C			push maxb
+ 0000004A  66| 8F 05			pop maxres
+	   00000002 R
+ 00000051  EB 0B			jmp ife1
+ 00000053			p3:
+ 00000053  66| FF 75 08			push maxa
+ 00000057  66| 8F 05			pop maxres
+	   00000002 R
+ 0000005E			ife1:
+ 0000005E  66| FF 35			push maxres
+	   00000002 R
+ 00000065  58				pop eax
+					ret
+ 0000006A			max ENDP
+
+ 0000006A			more PROC morea : WORD, moreb : WORD
+ 0000006D  66| 8B 45 08			mov ax, morea
+ 00000071  66| 3B 45 0C			cmp ax, moreb
+ 00000075  7F 04			jg p4
+ 00000077  7C 0F			jl p5
+ 00000079  74 0D			je p5
+ 0000007B			p4:
+ 0000007B  68 00000039 R		push offset L2
+ 00000080  8F 05 00000004 R		pop moreres
+ 00000086  EB 0B			jmp ife2
+ 00000088			p5:
+ 00000088  68 00000061 R		push offset L3
+ 0000008D  8F 05 00000004 R		pop moreres
+ 00000093			ife2:
+ 00000093  FF 35 00000004 R		push moreres
+ 00000099  58				pop eax
+					ret
+ 0000009E			more ENDP
+
+ 0000009E			eqormin PROC eqormina : WORD, eqorminb : WORD
+ 000000A1  66| 8B 45 08			mov ax, eqormina
+ 000000A5  66| 3B 45 0C			cmp ax, eqorminb
+ 000000A9  74 04			je p6
+ 000000AB  7C 02			jl p6
+ 000000AD  7F 0D			jg p7
+ 000000AF			p6:
+ 000000AF  68 00000089 R		push offset L4
+ 000000B4  8F 05 00000008 R		pop eqorminres
+ 000000BA  EB 0B			jmp ife3
+ 000000BC			p7:
+ 000000BC  68 000000C7 R		push offset L5
+ 000000C1  8F 05 00000008 R		pop eqorminres
+ 000000C7			ife3:
+ 000000C7  FF 35 00000008 R		push eqorminres
+ 000000CD  58				pop eax
+					ret
+ 000000D2			eqormin ENDP
+
+
+ 000000D2			main PROC
+ 000000D2  66| FF 35			push L6
+	   000000F0 R
+ 000000D9  66| 8F 05			pop mainc
+	   00000020 R
+ 000000E0  66| FF 35			push L7
+	   000000F2 R
+ 000000E7  58				pop eax
+ 000000E8  66| FF 35			push L8
+	   000000F4 R
+ 000000EF  5B				pop ebx
+ 000000F0  03 C3			add eax, ebx
+ 000000F2  50				push eax
+ 000000F3  66| 8F 05			pop maina
+	   0000001C R
+ 000000FA  0F B7 0D			movzx ecx, L8
+	   000000F4 R
+ 00000101			p8:
+ 00000101  66| FF 35			push mainc
+	   00000020 R
+ 00000108  5B				pop ebx
+ 00000109  66| FF 35			push L7
+	   000000F2 R
+ 00000110  58				pop eax
+ 00000111  2B D8			sub ebx, eax
+ 00000113  53				push ebx
+ 00000114  66| 8F 05			pop mainc
+	   00000020 R
+ 0000011B  E2 E4		loop p8
+ 0000011D  68 000000F6 R		push offset L9
+ 00000122  E8 00000000 E		call _printS
+ 00000127  66| FF 35			push mainc
+	   00000020 R
+ 0000012E  E8 00000000 E		call _printN
+ 00000133  66| FF 35			push maina
+	   0000001C R
+ 0000013A  E8 00000000 E		call _printN
+ 0000013F  68 00000110 R		push offset L10
+ 00000144  8F 05 0000000C R		pop mainstr1
+ 0000014A  68 00000113 R		push offset L11
+ 0000014F  8F 05 00000010 R		pop mainstr2
+ 00000155  68 0000011F R		push offset L12
+ 0000015A  E8 00000000 E		call _printS
+ 0000015F  FF 35 0000000C R		push mainstr1
+ 00000165  E8 00000000 E		call _printS
+ 0000016A  FF 35 00000010 R		push mainstr2
+ 00000170  E8 00000000 E		call _printS
+ 00000175  68 0000013D R		push offset L13
+ 0000017A  E8 00000000 E		call _printS
+ 0000017F  68 0000016C R		push offset L14
+ 00000184  8F 05 00000014 R		pop mainstr3
+ 0000018A  68 00000172 R		push offset L15
+ 0000018F  8F 05 00000018 R		pop mainstr4
+ 00000195  FF 35 00000018 R		push mainstr4
+ 0000019B  FF 35 00000014 R		push mainstr3
+ 000001A1  E8 00000000 E		call _compare
+ 000001A6  50				push eax
+ 000001A7  66| 8F 05			pop mainres
+	   00000024 R
+ 000001AE  66| A1			mov ax, mainres
+	   00000024 R
+ 000001B4  66| 3B 05			cmp ax, L7
+	   000000F2 R
+ 000001BB  74 04			je p9
+ 000001BD  7F 2B			jg p10
+ 000001BF  7C 29			jl p10
+ 000001C1			p9:
+ 000001C1  68 00000179 R		push offset L16
+ 000001C6  E8 00000000 E		call _printS
+ 000001CB  0F B7 05			movzx eax, mainc
+	   00000020 R
+ 000001D2  50				push eax
+ 000001D3  0F B7 05			movzx eax, mainb
+	   0000001E R
+ 000001DA  50				push eax
+ 000001DB  E8 FFFFFE20			call min
+ 000001E0  50				push eax
+ 000001E1  66| 8F 05			pop maind
+	   00000022 R
+ 000001E8  EB 27			jmp ife4
+ 000001EA			p10:
+ 000001EA  68 00000197 R		push offset L17
+ 000001EF  E8 00000000 E		call _printS
+ 000001F4  0F B7 05			movzx eax, mainc
+	   00000020 R
+ 000001FB  50				push eax
+ 000001FC  0F B7 05			movzx eax, mainb
+	   0000001E R
+ 00000203  50				push eax
+ 00000204  E8 FFFFFE2C			call max
+ 00000209  50				push eax
+ 0000020A  66| 8F 05			pop maind
+	   00000022 R
+ 00000211			ife4:
+ 00000211  66| FF 35			push maind
+	   00000022 R
+ 00000218  E8 00000000 E		call _printN
+ 0000021D  66| FF 35			push maina
+	   0000001C R
+ 00000224  66| 8F 05			pop mainb
+	   0000001E R
+ 0000022B  66| A1			mov ax, maina
+	   0000001C R
+ 00000231  66| 3B 05			cmp ax, mainb
+	   0000001E R
+ 00000238  74 04			je p11
+ 0000023A  7F 02			jg p11
+ 0000023C  7C 29			jl p12
+ 0000023E			p11:
+ 0000023E  0F B7 05			movzx eax, L8
+	   000000F4 R
+ 00000245  50				push eax
+ 00000246  0F B7 05			movzx eax, mainc
+	   00000020 R
+ 0000024D  50				push eax
+ 0000024E  E8 00000000 E		call _pow
+ 00000253  50				push eax
+ 00000254  66| 8F 05			pop mainb
+	   0000001E R
+ 0000025B  66| FF 35			push mainb
+	   0000001E R
+ 00000262  E8 00000000 E		call _printN
+ 00000267			p12:
+ 00000267  68 000001B5 R		push offset L18
+ 0000026C  E8 00000000 E		call _printS
+ 00000271  0F B7 05			movzx eax, L19
+	   000001D4 R
+ 00000278  50				push eax
+ 00000279  0F B7 05			movzx eax, mainb
+	   0000001E R
+ 00000280  50				push eax
+ 00000281  E8 FFFFFDE4			call more
+ 00000286  50				push eax
+ 00000287  8F 05 0000000C R		pop mainstr1
+ 0000028D  FF 35 0000000C R		push mainstr1
+ 00000293  E8 00000000 E		call _printS
+ 00000298  68 000001D6 R		push offset L20
+ 0000029D  E8 00000000 E		call _printS
+ 000002A2  66| FF 35			push L6
+	   000000F0 R
+ 000002A9  66| 8F 05			pop maina
+	   0000001C R
+ 000002B0  0F B7 05			movzx eax, L6
+	   000000F0 R
+ 000002B7  50				push eax
+ 000002B8  0F B7 05			movzx eax, maina
+	   0000001C R
+ 000002BF  50				push eax
+ 000002C0  E8 FFFFFDD9			call eqormin
+ 000002C5  50				push eax
+ 000002C6  8F 05 00000010 R		pop mainstr2
+ 000002CC  FF 35 00000010 R		push mainstr2
+ 000002D2  E8 00000000 E		call _printS
+ 000002D7  68 0000020A R		push offset L21
+ 000002DC  E8 00000000 E		call _printS
+ 000002E1  FF 35 00000010 R		push mainstr2
+ 000002E7  66| 8F 05			pop maina
+	   0000001C R
+ 000002EE  0F B7 05			movzx eax, L6
+	   000000F0 R
+ 000002F5  50				push eax
+ 000002F6  0F B7 05			movzx eax, maina
+	   0000001C R
+ 000002FD  50				push eax
+ 000002FE  E8 FFFFFD9B			call eqormin
+ 00000303  50				push eax
+ 00000304  8F 05 00000010 R		pop mainstr2
+ 0000030A  FF 35 00000010 R		push mainstr2
+ 00000310  E8 00000000 E		call _printS
+ 00000315  6A 00			push 0
+ 00000317  E8 00000000 E		call _pause
+ 0000031C  E8 00000000 E		call ExitProcess
+ 00000321			main ENDP
+				end main
+Microsoft (R) Macro Assembler Version 14.32.31332.0	    12/12/22 16:43:22
+SE_Asm03.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CONST  . . . . . . . . . . . . .	32 Bit	 0000024A Para	  Public  'CONST'	 ReadOnly
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000026 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000321 Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+eqormin  . . . . . . . . . . . .	P Near	 0000009E _TEXT	Length= 00000034 Public STDCALL
+  eqormina . . . . . . . . . . .	Word	 bp + 00000008
+  eqorminb . . . . . . . . . . .	Word	 bp + 0000000C
+  p6 . . . . . . . . . . . . . .	L Near	 000000AF _TEXT	
+  p7 . . . . . . . . . . . . . .	L Near	 000000BC _TEXT	
+  ife3 . . . . . . . . . . . . .	L Near	 000000C7 _TEXT	
+main . . . . . . . . . . . . . .	P Near	 000000D2 _TEXT	Length= 0000024F Public STDCALL
+  p8 . . . . . . . . . . . . . .	L Near	 00000101 _TEXT	
+  p9 . . . . . . . . . . . . . .	L Near	 000001C1 _TEXT	
+  p10  . . . . . . . . . . . . .	L Near	 000001EA _TEXT	
+  ife4 . . . . . . . . . . . . .	L Near	 00000211 _TEXT	
+  p11  . . . . . . . . . . . . .	L Near	 0000023E _TEXT	
+  p12  . . . . . . . . . . . . .	L Near	 00000267 _TEXT	
+max  . . . . . . . . . . . . . .	P Near	 00000035 _TEXT	Length= 00000035 Public STDCALL
+  maxa . . . . . . . . . . . . .	Word	 bp + 00000008
+  maxb . . . . . . . . . . . . .	Word	 bp + 0000000C
+  p2 . . . . . . . . . . . . . .	L Near	 00000046 _TEXT	
+  p3 . . . . . . . . . . . . . .	L Near	 00000053 _TEXT	
+  ife1 . . . . . . . . . . . . .	L Near	 0000005E _TEXT	
+min  . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000035 Public STDCALL
+  mina . . . . . . . . . . . . .	Word	 bp + 00000008
+  minb . . . . . . . . . . . . .	Word	 bp + 0000000C
+  p0 . . . . . . . . . . . . . .	L Near	 00000011 _TEXT	
+  p1 . . . . . . . . . . . . . .	L Near	 0000001E _TEXT	
+  ife0 . . . . . . . . . . . . .	L Near	 00000029 _TEXT	
+more . . . . . . . . . . . . . .	P Near	 0000006A _TEXT	Length= 00000034 Public STDCALL
+  morea  . . . . . . . . . . . .	Word	 bp + 00000008
+  moreb  . . . . . . . . . . . .	Word	 bp + 0000000C
+  p4 . . . . . . . . . . . . . .	L Near	 0000007B _TEXT	
+  p5 . . . . . . . . . . . . . .	L Near	 00000088 _TEXT	
+  ife2 . . . . . . . . . . . . .	L Near	 00000093 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+L10  . . . . . . . . . . . . . .	Byte	 00000110 CONST	
+L11  . . . . . . . . . . . . . .	Byte	 00000113 CONST	
+L12  . . . . . . . . . . . . . .	Byte	 0000011F CONST	
+L13  . . . . . . . . . . . . . .	Byte	 0000013D CONST	
+L14  . . . . . . . . . . . . . .	Byte	 0000016C CONST	
+L15  . . . . . . . . . . . . . .	Byte	 00000172 CONST	
+L16  . . . . . . . . . . . . . .	Byte	 00000179 CONST	
+L17  . . . . . . . . . . . . . .	Byte	 00000197 CONST	
+L18  . . . . . . . . . . . . . .	Byte	 000001B5 CONST	
+L19  . . . . . . . . . . . . . .	Word	 000001D4 CONST	
+L1 . . . . . . . . . . . . . . .	Byte	 00000000 CONST	
+L20  . . . . . . . . . . . . . .	Byte	 000001D6 CONST	
+L21  . . . . . . . . . . . . . .	Byte	 0000020A CONST	
+L22  . . . . . . . . . . . . . .	Word	 00000248 CONST	
+L2 . . . . . . . . . . . . . . .	Byte	 00000039 CONST	
+L3 . . . . . . . . . . . . . . .	Byte	 00000061 CONST	
+L4 . . . . . . . . . . . . . . .	Byte	 00000089 CONST	
+L5 . . . . . . . . . . . . . . .	Byte	 000000C7 CONST	
+L6 . . . . . . . . . . . . . . .	Word	 000000F0 CONST	
+L7 . . . . . . . . . . . . . . .	Word	 000000F2 CONST	
+L8 . . . . . . . . . . . . . . .	Word	 000000F4 CONST	
+L9 . . . . . . . . . . . . . . .	Byte	 000000F6 CONST	
+_compare . . . . . . . . . . . .	L Near	 00000000 FLAT	External STDCALL
+_pause . . . . . . . . . . . . .	L Near	 00000000 FLAT	External STDCALL
+_pow . . . . . . . . . . . . . .	L Near	 00000000 FLAT	External STDCALL
+_printN  . . . . . . . . . . . .	L Near	 00000000 FLAT	External STDCALL
+_printS  . . . . . . . . . . . .	L Near	 00000000 FLAT	External STDCALL
+eqorminres . . . . . . . . . . .	DWord	 00000008 _DATA	
+maina  . . . . . . . . . . . . .	Word	 0000001C _DATA	
+mainb  . . . . . . . . . . . . .	Word	 0000001E _DATA	
+mainc  . . . . . . . . . . . . .	Word	 00000020 _DATA	
+maind  . . . . . . . . . . . . .	Word	 00000022 _DATA	
+mainres  . . . . . . . . . . . .	Word	 00000024 _DATA	
+mainstr1 . . . . . . . . . . . .	DWord	 0000000C _DATA	
+mainstr2 . . . . . . . . . . . .	DWord	 00000010 _DATA	
+mainstr3 . . . . . . . . . . . .	DWord	 00000014 _DATA	
+mainstr4 . . . . . . . . . . . .	DWord	 00000018 _DATA	
+maxres . . . . . . . . . . . . .	Word	 00000002 _DATA	
+minres . . . . . . . . . . . . .	Word	 00000000 _DATA	
+moreres  . . . . . . . . . . . .	DWord	 00000004 _DATA	
+
+	   0 Warnings
+	   0 Errors
